@@ -4,6 +4,9 @@ namespace App\Requests;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * ProductPurchaseRequest - класс запроса оплаты товара
+ */
 class ProductPurchaseRequest extends PriceCalculateRequest
 {
     #[Assert\NotBlank]

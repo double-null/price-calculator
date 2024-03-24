@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\CouponRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Сущность "Купон"
+ */
 #[ORM\Entity(repositoryClass: CouponRepository::class)]
 #[ORM\Table(name: 'coupons')]
 class Coupon

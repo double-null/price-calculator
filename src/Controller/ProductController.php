@@ -11,8 +11,18 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Systemeio\TestForCandidates\PaymentProcessor\PaypalPaymentProcessor;
 
+/**
+ * ProductController
+ */
 class ProductController extends AbstractController
 {
+    /**
+     * Эндпоинт совершения покупки
+     * @param Request $request
+     * @param PriceCalculator $priceCalculator
+     * @param ValidatorInterface $validator
+     * @return JsonResponse
+     */
     #[Route('/purchase', name: 'product_purchase', methods: ['POST'])]
     public function purchase(
         Request $request,

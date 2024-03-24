@@ -5,6 +5,9 @@ namespace App\Requests;
 use App\Validator\Constraints as CustomAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * PriceCalculateRequest - класс запроса расчета цены товара
+ */
 class PriceCalculateRequest
 {
     #[Assert\NotBlank]

@@ -7,6 +7,9 @@ use App\Entity\Coupon;
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * PriceCalculator - сервис расчета цены
+ */
 class PriceCalculator
 {
     private $em;
@@ -16,6 +19,15 @@ class PriceCalculator
         $this->em = $em;
     }
 
+    /**
+     * Расчет стоимости товара
+     * @param $product - номер продукта
+     * @param $taxNumber - налоговый номер
+     * @param $couponCode - код купона
+     * @return float|int|null
+     * @throws \Doctrine\ORM\Exception\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function calculate($product, $taxNumber, $couponCode)
     {
         $countryTag = substr($taxNumber, 0, 2);

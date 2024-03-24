@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\CountryRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Сущность "Страна"
+ */
 #[ORM\Entity(repositoryClass: CountryRepository::class)]
 #[ORM\Table(name: 'countries')]
 class Country

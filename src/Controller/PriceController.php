@@ -10,8 +10,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
+/**
+ * PriceController
+ */
 class PriceController extends AbstractController
 {
+    /**
+     * Эндпоинт вычисления стоимости товара
+     * @param Request $request
+     * @param PriceCalculator $priceCalculator
+     * @param ValidatorInterface $validator
+     * @return JsonResponse
+     */
     #[Route('/calculate-price', name: 'calculate_price', methods: ['POST'])]
     public function calculate(
         Request $request,
