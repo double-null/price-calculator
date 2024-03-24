@@ -21,6 +21,9 @@ class Coupon
     private ?string $code = null;
 
     #[ORM\Column]
+    private ?int $type = null;
+
+    #[ORM\Column]
     private ?float $discount = null;
 
     public function getId(): ?int
@@ -36,6 +39,18 @@ class Coupon
     public function setCode(string $code): static
     {
         $this->code = $code;
+
+        return $this;
+    }
+
+    public function getType(): ?int
+    {
+        return $this->type;
+    }
+
+    public function setType(?int $type): Coupon
+    {
+        $this->type = $type;
 
         return $this;
     }

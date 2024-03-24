@@ -31,14 +31,16 @@ class AppFixtures extends Fixture
 
         // Генерируем скидочные купоны
         $discounts = [10, 20, 50, 100];
-        $firstChars = 'PD';
         for ($i = 1; $i < 10; $i++) {
+            $type = rand(1, 2);
             $discount = $discounts[array_rand($discounts)];
-            $firstChar = $firstChars[rand(0, strlen($firstChars)-1)];
+            $firstChar = ($type == 1) ? 'P' : 'D';
             $code = $firstChar.$discount.'-'.strtoupper(substr(md5(rand()), 0, 10));
+
             $coupon = (new Coupon())
                 ->setCode($code)
-                ->setDiscount($discount);
+                ->setDiscount($discount)
+                ->setType($type);
             $manager->persist($coupon);
         }
 

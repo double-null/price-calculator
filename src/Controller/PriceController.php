@@ -37,13 +37,20 @@ class PriceController extends AbstractController
         $errors = $validator->validate($requestParams);
 
         if (count($errors) == 0) {
-            return new JsonResponse([
-                'price' => $priceCalculator->calculate(
-                    $data['product'],
-                    $data['taxNumber'],
-                    $data['couponCode'],
-                )
-            ]);
+            try {
+                return new JsonResponse([
+                    'price' => $priceCalculator->calculate(
+                        $data['product'],
+                        $data['taxNumber'],
+                        $data['couponCode'],
+                    )
+                ]);
+            } catch (\Exception $exception) {
+                return new JsonResponse(
+                    ['errors' => [$exception->getMessage()]],
+                    $exception->getStatusCode(),
+                );
+            }
         } else {
             $validErrors = [];
             foreach ($errors as $error) $validErrors[] = $error->getMessage();
