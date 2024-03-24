@@ -44,20 +44,22 @@ class ProductController extends AbstractController
             return new JsonResponse(['errors' => $validErrors], 500);
         }
 
-        $price = $priceCalculator->calculate(
-            $data['product'],
-            $data['taxNumber'],
-            $data['couponCode'],
-        );
-
         try {
+            $price = $priceCalculator->calculate(
+                $data['product'],
+                $data['taxNumber'],
+                $data['couponCode'],
+            );
             $res = match ($data['paymentProcessor']) {
                 'paypal' => (new PaypalPaymentProcessor())->pay($price),
 
                 // Можно добавить другие платежки
             };
         } catch (\Exception $exception) {
-            return new JsonResponse(['errors' => [$exception->getMessage()]], 500);
+            return new JsonResponse(
+                ['errors' => [$exception->getMessage()]],
+                $exception->getStatusCode(),
+            );
         }
 
         return new JsonResponse();
