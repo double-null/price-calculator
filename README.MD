@@ -16,7 +16,7 @@ http://127.0.0.1:8000/calculate-price
 ```sh
 $ curl --header "Content-Type: application/json" \
 --request POST \
---data '{"product": 1, "taxNumber": "DE123456789", "couponCode": "P10-D90981570D"}' \
-http://127.0.0.1:8000/calculate-price
+--data '{"product": 1, "taxNumber": "DE123456789", "couponCode": "P10-D90981570D", "paymentProcessor": "paypal"}' \
+http://127.0.0.1:8000/purchase
 ```
 
